@@ -2,7 +2,7 @@ package com.bridgelabz;
 
 public class CensusAnalyzerException extends Exception {
     public enum ExceptionType {
-        CENSUS_FILE_WRONG
+        CENSUS_FILE_PROBLEM
     }
 
     public ExceptionType type;

@@ -23,7 +23,7 @@ public class CensusAnalyser {
             int numOfEntries = (int) StreamSupport.stream(censusCSVIterable.spliterator(), false).count();
             return numOfEntries;
         } catch (IOException e) {
-            throw new CensusAnalyzerException(e.getMessage(), CensusAnalyzerException.ExceptionType.CENSUS_FILE_WRONG);
+            throw new CensusAnalyzerException(e.getMessage(), CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM);
         }
     }
 }
