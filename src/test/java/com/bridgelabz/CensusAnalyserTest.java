@@ -9,7 +9,7 @@ public class CensusAnalyserTest {
     private static final String INDIA_CENSUS_WRONG_FILE_TYPE = "./src/main/resources/IndiaStateCensusData.jpg";
 
     @Test
-    public void givenIndianCensusCsvFile_WhenCorrect_ShouldReturnRecordCount() throws CensusAnalyzerException {
+    public void givenIndianCensusCsvFile_WhenCorrect_ShouldReturnRecordCount() throws CensusAnalyserException {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         int numOfRecords = censusAnalyser.recordsCounter(INDIA_CENSUS_CSV_FILE_PATH);
         Assert.assertEquals(29,numOfRecords);
@@ -20,8 +20,8 @@ public class CensusAnalyserTest {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         try {
             censusAnalyser.recordsCounter(INDIA_CENSUS_WRONG_CSV_FILE_PATH);
-        } catch (CensusAnalyzerException e) {
-            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
 
@@ -30,21 +30,28 @@ public class CensusAnalyserTest {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         try {
             censusAnalyser.recordsCounter(INDIA_CENSUS_WRONG_FILE_TYPE);
-        } catch (CensusAnalyzerException e) {
-            Assert.assertEquals(CensusAnalyzerException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM, e.type);
         }
     }
 
     @Test
-    public void givenCsvFile_WhenDelimiterIncorrect_ThrowsException() throws CensusAnalyzerException {
+    public void givenCsvFile_WhenDelimiterIncorrect_ThrowsException() {
         CensusAnalyser censusAnalyser = new CensusAnalyser();
         try {
             censusAnalyser.recordsCounter(INDIA_CENSUS_CSV_FILE_PATH);
-        } catch (CensusAnalyzerException e) {
-            Assert.assertEquals(CensusAnalyzerException.ExceptionType.WRONG_DELIMITER_OR_HEADER, e.type);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.WRONG_DELIMITER_OR_HEADER, e.type);
         }
-        catch (RuntimeException e) {
-            throw new CensusAnalyzerException(e.getMessage(), CensusAnalyzerException.ExceptionType.WRONG_DELIMITER_OR_HEADER);
+    }
+
+    @Test
+    public void givenCsvFile_WhenHeaderIncorrect_ThrowsException() {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        try {
+            censusAnalyser.recordsCounter(INDIA_CENSUS_CSV_FILE_PATH);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.WRONG_DELIMITER_OR_HEADER, e.type);
         }
     }
 }
