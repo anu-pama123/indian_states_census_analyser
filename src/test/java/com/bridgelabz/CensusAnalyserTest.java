@@ -97,4 +97,14 @@ public class CensusAnalyserTest {
             throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.WRONG_DELIMITER_OR_HEADER);
         }
     }
+
+    @Test
+    public void givenStateCodeCsvFile_WhenHeaderIncorrect_ThrowsException() {
+        CensusAnalyser censusAnalyser = new CensusAnalyser();
+        try {
+            censusAnalyser.loadStateCodeData(INDIA_STATE_CODE_CSV_FILE_PATH);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.WRONG_DELIMITER_OR_HEADER, e.type);
+        }
+    }
 }

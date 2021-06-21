@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-21T11:29:22" hostname="aswin-laptop" time="0.22">
+<testsuite name="com.bridgelabz.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-06-21T11:32:59" hostname="aswin-laptop" time="0.235">
   <properties/>
-  <testcase name="givenStateCodeCsvFile_WhenDelimiterIncorrect_ThrowsException" classname="com.bridgelabz.CensusAnalyserTest" time="0.22"/>
+  <testcase name="givenStateCodeCsvFile_WhenHeaderIncorrect_ThrowsException" classname="com.bridgelabz.CensusAnalyserTest" time="0.235"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
