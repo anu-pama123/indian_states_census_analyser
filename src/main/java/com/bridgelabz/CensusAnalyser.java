@@ -29,4 +29,16 @@ public class CensusAnalyser {
             throw new CensusAnalyserException(e.getMessage(), CensusAnalyserException.ExceptionType.WRONG_DELIMITER_OR_HEADER);
         }
     }
+
+    public int loadStateCodeData(String csvFilePath) throws IOException {
+        Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
+        CsvToBeanBuilder<StateCodeCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
+        csvToBeanBuilder.withType(StateCodeCSV.class);
+        csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
+        CsvToBean<StateCodeCSV> csvToBean = csvToBeanBuilder.build();
+        Iterator<StateCodeCSV> censusCSVIterator = csvToBean.iterator();
+        Iterable<StateCodeCSV> censusCSVIterable = () -> censusCSVIterator;
+        int numOfEntries = (int) StreamSupport.stream(censusCSVIterable.spliterator(), false).count();
+        return numOfEntries;
+    }
 }
